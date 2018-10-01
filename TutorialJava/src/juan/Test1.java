@@ -1,5 +1,17 @@
 package juan;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
+import java.nio.file.Path;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+import java.nio.file.WatchEvent.Kind;
+import java.nio.file.WatchEvent.Modifier;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Test1 {
@@ -17,7 +29,6 @@ public class Test1 {
 		// condicional if
 		
 		/* 
-		 * 
 		 * true y true -> true
 		 * true y false -> false
 		 * false y false -> false
@@ -61,7 +72,27 @@ public class Test1 {
 		String username = scanner.nextLine();
 		System.out.println("Your username is " + username);
 		
+		File file = new File("pedro.jpeg");
+		try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String mimeType = "";
+		try {
+			mimeType = Files.probeContentType(file.toPath());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(mimeType);
+		
 	}	
+	
+	
+	
 	
 //	public String comprobarTamanio(int longitudCadena) {
 //		if (nombre.length() > 3) {
